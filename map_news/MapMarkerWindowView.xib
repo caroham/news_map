@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="HoeflerText.ttc">
+            <string>HoeflerText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="map_news" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MapMarkerWindow" customModule="map_news" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="210" height="320"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4s-4Z-oMm">
+                    <rect key="frame" x="16" y="164" width="178" height="14"/>
+                    <fontDescription key="fontDescription" name="HoeflerText-Regular" family="Hoefler Text" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZxI-WT-MjF">
+                    <rect key="frame" x="0.0" y="0.0" width="210" height="140"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="140" id="afF-5E-OoV"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYp-OT-KiC">
+                    <rect key="frame" x="16" y="182" width="178" height="13.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRu-dM-S74">
+                    <rect key="frame" x="16" y="203.5" width="178" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View Article" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MGc-ug-omw">
+                    <rect key="frame" x="16" y="290.5" width="178" height="13.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="sYp-OT-KiC" secondAttribute="trailing" constant="16" id="2L4-PO-VZM"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="HRu-dM-S74" secondAttribute="trailing" constant="16" id="6U9-r6-YBh"/>
+                <constraint firstItem="HRu-dM-S74" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="6se-9b-k2G"/>
+                <constraint firstItem="ZxI-WT-MjF" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="BBT-Ls-RG2"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="MGc-ug-omw" secondAttribute="trailing" constant="16" id="BtP-m4-eZq"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="G4s-4Z-oMm" secondAttribute="trailing" constant="16" id="D0O-na-umB"/>
+                <constraint firstItem="G4s-4Z-oMm" firstAttribute="top" secondItem="ZxI-WT-MjF" secondAttribute="bottom" constant="24" id="IdU-fd-ylz"/>
+                <constraint firstItem="sYp-OT-KiC" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="Tmd-cl-ehx"/>
+                <constraint firstItem="MGc-ug-omw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="WDl-Ag-cBV"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ZxI-WT-MjF" secondAttribute="trailing" id="Wy9-AB-KDt"/>
+                <constraint firstItem="sYp-OT-KiC" firstAttribute="top" secondItem="G4s-4Z-oMm" secondAttribute="bottom" constant="4" id="YIq-YO-VOP"/>
+                <constraint firstItem="ZxI-WT-MjF" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="YpJ-bf-hSF"/>
+                <constraint firstItem="G4s-4Z-oMm" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="cC5-YO-kLL"/>
+                <constraint firstItem="MGc-ug-omw" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="prH-5F-dDk"/>
+                <constraint firstItem="HRu-dM-S74" firstAttribute="top" secondItem="sYp-OT-KiC" secondAttribute="bottom" constant="8" id="tFg-G2-7Pm"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="MGc-ug-omw" secondAttribute="bottom" constant="16" id="y50-Qq-dcZ"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="descLabel" destination="HRu-dM-S74" id="sly-Bb-ef2"/>
+                <outlet property="locationLabel" destination="sYp-OT-KiC" id="kGt-kZ-KXL"/>
+                <outlet property="storyImg" destination="ZxI-WT-MjF" id="Hab-lB-qAG"/>
+                <outlet property="titleLabel" destination="G4s-4Z-oMm" id="SVN-U4-cJl"/>
+                <outlet property="viewLinkLabel" destination="MGc-ug-omw" id="Ha0-nM-aIZ"/>
+            </connections>
+            <point key="canvasLocation" x="25" y="-181.5"/>
+        </view>
+    </objects>
+</document>
