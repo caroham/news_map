@@ -22,7 +22,6 @@ class MapViewController: UIViewController, MapMarkerDelegate {
  
     let locationManager = CLLocationManager()
     
-//    var newsStoriesArr: [[String:Any]] = []
     let url = URL(string: "https://api.nytimes.com/svc/topstories/v2/world.json?&api-key=19e3d7ec6332478dad58f82df449bc47")
     
     var markerWindowXibView: UIView!
@@ -58,7 +57,7 @@ class MapViewController: UIViewController, MapMarkerDelegate {
             do {
                 if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary {
                     if let results = jsonResult["results"] as? [[String:Any]] {
-                        for i in 0..<4 {
+                        for i in 0..<10 {
 
                             var markerInfo: [String:Any] = [:]
                             
@@ -100,8 +99,6 @@ class MapViewController: UIViewController, MapMarkerDelegate {
                             if geoArr.count > 0 {
                                 let geoName = geoArr[0] as! String
                                 
-                                print("/////////// geoname", geoName)
-                                
                                 markerInfo["geoName"] = geoName
                                 
                                 let geoNameFormat = self.formatGeo(string: geoName)
@@ -125,22 +122,21 @@ class MapViewController: UIViewController, MapMarkerDelegate {
                                     } catch {
                                         print("something went wrong")
                                     }
-                                    
-//                                    self.newsStoriesArr.append(newDict)
+                                    DispatchQueue.main.async {
+                                        ///// create marker
+                                        print("in dispatch queue")
+                                        if let positionUW = markerInfo["position"] as? CLLocationCoordinate2D {
+                                            print("in positionUW")
+                                            self.showMarker(position: positionUW, markerData: markerInfo)
+                                            print("/////////// marker data", markerInfo)
+                                            self.mapView.reloadInputViews()
+                                        }
+                                        ///// animate in
+                                        
+                                    }
                                 })
                             }
-                            DispatchQueue.main.async {
-                                ///// create marker
-                                print("in dispatch queue")
-                                if let positionUW = markerInfo["position"] as? CLLocationCoordinate2D {
-                                    print("in positionUW")
-                                    self.showMarker(position: positionUW, markerData: markerInfo)
-                                    print("/////////// marker data", markerInfo)
-                                    self.mapView.reloadInputViews()
-                                }
-                                ///// animate in
-                                
-                            }
+///
                         }
 
                     }
@@ -180,7 +176,6 @@ class MapViewController: UIViewController, MapMarkerDelegate {
     func showMarker(position: CLLocationCoordinate2D, markerData: [String:Any]) {
         let marker = GMSMarker()
         marker.position = position
-//        marker.position = CLLocationCoordinate2D(latitude: lat1, longitude: long1)
         marker.userData = markerData
         marker.appearAnimation = .pop
         marker.map = mapView
@@ -192,14 +187,13 @@ class MapViewController: UIViewController, MapMarkerDelegate {
         return infoWindow
     }
     
-    
-/////////////// IBActions
-    
-    @IBAction func btnPressed(_ sender: UIButton) {
-//        print("//////////////news array")
-//        print(newsStoriesArr)
+    func alert(_ title: String, message: String) {
+        let vc = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        vc.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        present(vc, animated: true, completion: nil)
     }
     
+/////////////// IBActions
     
 }
 
@@ -207,7 +201,7 @@ class MapViewController: UIViewController, MapMarkerDelegate {
 extension MapViewController: CLLocationManagerDelegate {
     
 
-//////popup
+//////location disabled popup
     
     func showLocationDisabledPopUp() {
         let alertController = UIAlertController(title: "Background Location Access Disabled", message: "", preferredStyle: .alert)
@@ -252,7 +246,7 @@ extension MapViewController: CLLocationManagerDelegate {
             
             locationManager.stopUpdatingLocation()
 
-            reverseGeocodeCoordinate(location.coordinate)
+//            reverseGeocodeCoordinate(location.coordinate)
         }
     }
     
@@ -264,33 +258,31 @@ extension MapViewController: CLLocationManagerDelegate {
 
 extension MapViewController: GMSMapViewDelegate {
  
-    private func reverseGeocodeCoordinate(_ coordinate: CLLocationCoordinate2D) {
-
-        let geocoder = GMSGeocoder()
-        
-        geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
-            guard let location = response?.firstResult(), let country = location.country, let city = location.locality else {
-                return
-            }
-            
-//            self.city = city
-//            self.country = country
-        }
-    }
+//    private func reverseGeocodeCoordinate(_ coordinate: CLLocationCoordinate2D) {
+//
+//        let geocoder = GMSGeocoder()
+//
+//        geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
+//            guard let location = response?.firstResult(), let country = location.country, let city = location.locality else {
+//                return
+//            }
+//
+////            self.city = city
+////            self.country = country
+//        }
+//    }
     
     
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         var markerData : NSDictionary?
         if let dataUW = marker.userData! as? NSDictionary {
-            print("made to if")
             markerData = dataUW
         }
         locationMarker = marker
         infoWindow.removeFromSuperview()
         infoWindow = loadNiB()
         guard let location = locationMarker?.position else {
-            print("locationMarker is nil")
             return false
         }
         // Pass the spot data to the info window, and set its delegate to self
@@ -307,7 +299,13 @@ extension MapViewController: GMSMapViewDelegate {
                 infoWindow.descLabel.text = newsDesc
             }
             if let imgUrl = dictUW["imgUrl"] as? String {
+                print("in imgUrl")
                 infoWindow.imgUrl = imgUrl
+                let url = URL(string: imgUrl)
+                UIImage.downloadFromRemoteURL(url!, completion: { image, error in
+                    guard let image = image, error == nil else { print(error);return }
+                    self.infoWindow.storyImg.image = image
+                })
             }
             
             if let loc = dictUW["geoName"] as? String {
@@ -315,15 +313,35 @@ extension MapViewController: GMSMapViewDelegate {
             }
             if let storyURL = dictUW["url"] as? String {
                 infoWindow.storyUrl = storyURL
+//////////////// link section
+                infoWindow.viewArticleLink.isEditable = false
+                infoWindow.viewArticleLink.dataDetectorTypes = .link
+//                let string = NSMutableAttributedString(string: "View Article")
+//                string.addAttribute(.link, value: storyURL, range: NSRange(location: 19, length: storyURL.count))
+//                infoWindow.viewArticleLink.attributedText = string
+////////////////
             }
         }
 
-
-        // Offset the info window to be directly above the tapped marker
-        infoWindow.center = mapView.projection.point(for: location)
-        infoWindow.center.y = infoWindow.center.y - 82
+        let group = DispatchGroup()
+        group.enter()
         
-        mapView.center = mapView.projection.point(for: location)
+        DispatchQueue.main.async {
+//            var newPosition = mapView.projection.point(for: location)
+//            newPosition.y = newPosition.y + 210
+//            mapView.center = newPosition
+//            mapView.center =  mapView.projection.point(for: location)
+            group.leave()
+        }
+
+        group.notify(queue: .main) {
+            // Offset the info window to be directly above the tapped marker
+            self.infoWindow.center = mapView.center
+            self.infoWindow.center.y = self.infoWindow.center.y - 210
+        }
+
+
+
         
         self.view.addSubview(infoWindow)
         return false

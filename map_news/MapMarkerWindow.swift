@@ -13,8 +13,9 @@ class MapMarkerWindow: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var descLabel: UILabel!
-    @IBOutlet weak var viewLinkLabel: UILabel!
     @IBOutlet weak var storyImg: UIImageView!
+    @IBOutlet weak var viewArticleLink: UITextView!
+    
     
     weak var delegate: MapMarkerDelegate?
     var spotData: NSDictionary?

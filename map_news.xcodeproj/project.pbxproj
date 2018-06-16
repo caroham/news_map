@@ -16,9 +16,10 @@
 		058BD2442069B1D8009043D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 058BD2422069B1D8009043D7 /* LaunchScreen.storyboard */; };
 		058BD24F2069B1D8009043D7 /* map_newsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058BD24E2069B1D8009043D7 /* map_newsTests.swift */; };
 		058BD25A2069B1D8009043D7 /* map_newsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058BD2592069B1D8009043D7 /* map_newsUITests.swift */; };
+		059B19E3206F0198003B235B /* ImageDownloadExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059B19E2206F0198003B235B /* ImageDownloadExtension.swift */; };
 		059EBD7A206C64A000A4BCFF /* MapMarkerWindowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059EBD79206C64A000A4BCFF /* MapMarkerWindowView.xib */; };
 		059EBD7C206C692200A4BCFF /* MapMarkerWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059EBD7B206C692200A4BCFF /* MapMarkerWindow.swift */; };
-		A3C18A0A31BDA76EDD8FA9FC /* libPods-map_news.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 801BD6568B64E80CC79FE14F /* libPods-map_news.a */; };
+		A3C18A0A31BDA76EDD8FA9FC /* libPods-map_news.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 801BD6568B64E80CC79FE14F /* libPods-map_news.a */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		058BD2552069B1D8009043D7 /* map_newsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = map_newsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		058BD2592069B1D8009043D7 /* map_newsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = map_newsUITests.swift; sourceTree = "<group>"; };
 		058BD25B2069B1D8009043D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		059B19E2206F0198003B235B /* ImageDownloadExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadExtension.swift; sourceTree = "<group>"; };
 		059EBD79206C64A000A4BCFF /* MapMarkerWindowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapMarkerWindowView.xib; sourceTree = "<group>"; };
 		059EBD7B206C692200A4BCFF /* MapMarkerWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarkerWindow.swift; sourceTree = "<group>"; };
 		7F10BB7916EF35E3AA9B2FFB /* Pods-map_news.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-map_news.debug.xcconfig"; path = "Pods/Target Support Files/Pods-map_news/Pods-map_news.debug.xcconfig"; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				059EBD7B206C692200A4BCFF /* MapMarkerWindow.swift */,
 				058BD2392069B1D8009043D7 /* AppDelegate.swift */,
 				058BD23B2069B1D8009043D7 /* MapViewController.swift */,
+				059B19E2206F0198003B235B /* ImageDownloadExtension.swift */,
 				05639600206DC9E20034548C /* MapMarkerDelegate.swift */,
 				059EBD79206C64A000A4BCFF /* MapMarkerWindowView.xib */,
 				05228A69206B1E5E00B19E28 /* NewsStoriesModel.swift */,
@@ -358,6 +361,7 @@
 				05639601206DC9E20034548C /* MapMarkerDelegate.swift in Sources */,
 				059EBD7C206C692200A4BCFF /* MapMarkerWindow.swift in Sources */,
 				058BD23C2069B1D8009043D7 /* MapViewController.swift in Sources */,
+				059B19E3206F0198003B235B /* ImageDownloadExtension.swift in Sources */,
 				058BD23A2069B1D8009043D7 /* AppDelegate.swift in Sources */,
 				05228A6A206B1E5E00B19E28 /* NewsStoriesModel.swift in Sources */,
 			);
